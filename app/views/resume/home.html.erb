@@ -1,0 +1,64 @@
+<style type="text/css">
+	a{
+		text-decoration: none;
+		color: black
+	}
+
+	a:visited{
+		text-decoration: none;
+		color: black;
+	}
+	a:hover{
+		transform: scale(1.3);
+		color: orange;
+	}
+	.links {
+		display: flex;
+		justify-content: space-around;
+	}
+</style>
+
+<h> Yadush Yadav </h>
+<br>
+<div class="links">
+<a href="/academic">
+Academic Details
+</a> 
+<br>
+<a href="/courses">
+Courses Done
+</a>
+<br>
+<a href="/achievements">
+Achievements
+</a>
+<br>
+<a href="/projects">
+Projects
+</a>
+<br>
+<a href="/technical">
+Technical Skills
+</a>
+<br>
+<a href="/interests">
+Interests
+</a>
+</div>
+<% @resume.each do |r| %>
+	<tr>
+	<br>
+	<li><%= r.comment %>
+	<td><%= r.created_at.strftime("%H:%M:%S %a %b") %>
+	<form action="/delete" method="get" style="display: inline-block;">
+		<input type="hidden" name="resume_id" value="<%= r.id %>">
+		<input type="submit" value="Delete">
+	</form> 
+	</li>
+	</tr>
+	<% end %>
+<h2> Add a comment </h2>
+<form action="/create" method="get">
+<input type="text" name="comment">
+<input type="submit" value="comment">
+</form> 
